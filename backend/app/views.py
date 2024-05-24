@@ -3,10 +3,13 @@ from .models import *
 from .serializers import * 
 
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
+
 
 class CategoriaView(ModelViewSet):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
+    permission_classes = (IsAuthenticated,)
 
 class AutorView(ModelViewSet):
     queryset = Autor.objects.all()
