@@ -1,4 +1,8 @@
-<script setup lang ='ts'> 
+<script setup lang ='ts'>
+    
+definePageMeta({
+    middleware: 'auth'
+})
 </script>
 <template>
     <h1>Tela Carrinho</h1>

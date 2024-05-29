@@ -15,6 +15,10 @@ class AutorView(ModelViewSet):
     queryset = Autor.objects.all()
     serializer_class = AutorSerializer
 
+class BibliotecarioView(ModelViewSet):
+    queryset = Bibliotecario.objects.all()
+    serializer_class = BibliotecarioSerializer
+
 class LivrosView(ModelViewSet):
     queryset = Livros.objects.all()
     serializer_class = LivrosSerializer

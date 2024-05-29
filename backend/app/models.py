@@ -2,6 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .gerenciador import Gerenciador
+from django.utils import timezone
 
 
 class UsuarioCustomizado(AbstractBaseUser,PermissionsMixin):
@@ -29,13 +30,20 @@ class Categoria(models.Model):
 class Autor(models.Model):
     nome = models.CharField(max_length=100)
     biografia =  models.CharField(max_length=500)
-    foto = models.CharField(max_length=1000)
+    foto = models.CharField(max_length=20000)
     customUserFK =  models.ForeignKey(UsuarioCustomizado, related_name='usuarioAutor', on_delete=models.CASCADE)
     Nascimento = models.DateField()
 
     def __str__(self):
         return self.nome
     
+
+class Bibliotecario(models.Model):
+    nome = models.CharField(max_length=100)
+    customUserFK =  models.ForeignKey(UsuarioCustomizado, related_name='usuarioBibliotecario', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nome
 
 TYPE = [
     ('E','Ebook'),
@@ -51,17 +59,17 @@ STATUS = [
 class Livros(models.Model):
     titulo = models.CharField(max_length=100)
     descricao = models.CharField(max_length=400)
-    n_paginas = models.IntegerField
+    n_paginas = models.IntegerField()
     formato = models.CharField(max_length=1, choices=TYPE)
     status = models.CharField(max_length=10, choices= STATUS, default = 'P')
-    n_edicao = models.IntegerField
+    n_edicao = models.IntegerField()
     autor_FK = models.ForeignKey(Autor, related_name='LivroAutor', on_delete=models.CASCADE)
     categoria_FK = models.ForeignKey(Categoria, related_name='CategoriaLivro', on_delete=models.CASCADE)
-    data = models.DateField
+    dataPub = models.DateField()
     valor_livro =  models.DecimalField(max_digits=5, decimal_places=2,null=True, blank= True)
     capa = models.CharField(max_length=1000)
-    estrela = models.IntegerField
-    estoque = models.IntegerField
+    estrela = models.IntegerField()
+    estoque = models.IntegerField()
 
     def __str__(self):
         return self.titulo

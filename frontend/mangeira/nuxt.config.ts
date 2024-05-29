@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   ],
   primevue: {
     components:{
-      include:['Button', 'Avatar','InputText','floatlabel']
+      include:['Button', 'Avatar','InputText','floatlabel','Menubar']
     }
   },
   // para fazer importações globais
@@ -28,7 +28,7 @@ export default defineNuxtConfig({
       endpoints: {
         signIn: { path: '/token/login', method: 'post' },
         signOut: { path: '/token/logout', method: 'post' },
-        getSession: { path: '/usuarios', method: 'get' },
+        getSession: { path: '/Emprestimo', method: 'get' },
       },
       token: { signInResponseTokenPointer: '/auth_token', type: 'Token' },
       pages: { login: '/' }, //altera quando for em outra pagina para logar

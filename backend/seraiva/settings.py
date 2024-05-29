@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'app'
 ]
 
-#AUTH_USER_MODEL = 
 AUTH_USER_MODEL = 'app.UsuarioCustomizado'
 
 MIDDLEWARE = [

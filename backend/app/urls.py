@@ -5,6 +5,7 @@ from django.urls import path
 router = DefaultRouter()
 router.register (r'categoria', CategoriaView)
 router.register (r'autor', AutorView)
+router.register (r'bibliotecario', BibliotecarioView)
 router.register (r'livros', LivrosView)
 router.register (r'Emprestimo', EmprestimoView)
 

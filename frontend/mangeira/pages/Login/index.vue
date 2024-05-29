@@ -1,11 +1,32 @@
 <script setup lang ='ts'> 
-import {reactive} from 'vue';
+import {reactive,ref} from 'vue';
+const { signIn }= useAuth();
+
+definePageMeta({
+    layout:'login'
+})
+
     const credenciais = reactive({
         email:'',
         password:''
     });
+    const mensagemErro = ref('');
     const fazerLogin =() => {
         console.log("login: ", credenciais)
+        signIn(credenciais, {redirect:false})
+            .then(()=>{ //qnd terminar esse login 
+                console.log("logadocom sucesso...");
+                navigateTo('/home');
+            })
+            .catch((error)=> {
+                console.error("error: ", error)
+                mensagemErro.value= 'Login ou senha incorretos';
+                setTimeout(()=>{
+                    mensagemErro.value ='';
+                    credenciais.email='';
+                    credenciais.password ='';
+                }, 3000); //em JavaScript é um timer da mensagem na tela
+            })
     }
 </script>
 
@@ -25,9 +46,13 @@ import {reactive} from 'vue';
                     <label for="passoword-input">Senha</label>
                 </FloatLabel>
             </div>
+            <div class="row-login" v-if = "mensagemErro !== ''"> <!-- Quero que apareca só quando a mensagemError estiver diferente de vazio --> 
+                <p id="erro">{{ mensagemErro }}</p>
+            </div>
             <div class ="row-login">
                 <Button @click="fazerLogin" label="Entrar" id="login-button"></Button>
             </div>
+            
         </section>
 
     </main>
@@ -59,8 +84,12 @@ import {reactive} from 'vue';
                 
                 height: 30px;
                 width: 250px;
+            
             }
             
+            #erro{
+                color: tomato
+            }
 
         }
     }

@@ -19,6 +19,13 @@ class AutorSerializer(serializers.ModelSerializer):
         fields = '__all__'
         many = True
 
+class BibliotecarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Bibliotecario
+        fields = '__all__'
+        many = True
+
+
 
 class LivrosSerializer(serializers.ModelSerializer):
     class Meta:
