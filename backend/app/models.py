@@ -59,7 +59,7 @@ STATUS = [
 class Livros(models.Model):
     titulo = models.CharField(max_length=100)
     descricao = models.CharField(max_length=400)
-    n_paginas = models.IntegerField()
+    N_paginas = models.IntegerField()
     formato = models.CharField(max_length=1, choices=TYPE)
     status = models.CharField(max_length=10, choices= STATUS, default = 'P')
     n_edicao = models.IntegerField()
