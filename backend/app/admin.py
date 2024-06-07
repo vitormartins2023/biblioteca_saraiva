@@ -52,8 +52,8 @@ admin.site.register(Bibliotecario,AdminBibliotecario)
 
 
 class AdminLivros(admin.ModelAdmin):
-    list_display = ['id', 'titulo','descricao','n_paginas','formato','status','n_edicao','autor_FK','categoria_FK','dataPub','valor_livro','capa','estrela','estoque']
-    list_display_links = ('id', 'titulo','autor_FK','n_paginas','valor_livro',)
+    list_display = ['id', 'titulo','descricao','N_paginas','formato','status','n_edicao','autor_FK','categoria_FK','dataPub','valor_livro','capa','estrela','estoque']
+    list_display_links = ('id', 'titulo','autor_FK','N_paginas','valor_livro',)
     search_fields = ('descricao','id',)
     list_per_page = 10
 
