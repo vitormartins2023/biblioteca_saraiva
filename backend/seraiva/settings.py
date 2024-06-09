@@ -14,7 +14,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
     'rest_framework',
     'corsheaders',
     'rest_framework.authtoken',
@@ -46,8 +47,18 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'app.UsuarioCustomizado'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://localhost/',
+    'https://127.0.0.1/',
+    'https://biblioteca-saraiva-ikydsiqi2-vitor-martins-projects-a0ee11b8.vercel.app',
+    'https://biblioteca-saraiva-ikydsiqi2-vitor-martins-projects-a0ee11b8.vercel.app/*',
+    'https://somativa-andre-2341-production.up.railway.app',
+    'https://somativa-andre-2341-production.up.railway.app/*'
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -141,4 +152,10 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication'
     ] 
+}
+STORAGES = {
+    # ...
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
 }

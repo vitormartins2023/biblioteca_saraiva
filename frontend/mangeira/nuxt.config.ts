@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   modules: [
     'nuxt-primevue',
     '@sidebase/nuxt-auth',
+    '@pinia/nuxt',
   ],
   primevue: {
     components:{
@@ -22,16 +23,19 @@ export default defineNuxtConfig({
     
   ],
   auth: {
-    baseURL: 'http://localhost:8000',
+    baseURL: 'https://somativa-andre-2341-production.up.railway.app/api/auth',
     provider: {
       type: 'local',
       endpoints: {
         signIn: { path: '/token/login', method: 'post' },
         signOut: { path: '/token/logout', method: 'post' },
-        getSession: { path: '/Emprestimo', method: 'get' },
+        getSession: { path: '/users', method: 'get' },
       },
       token: { signInResponseTokenPointer: '/auth_token', type: 'Token' },
-      pages: { login: '/' }, //altera quando for em outra pagina para logar
+      pages: { login: '/login' }, //altera quando for em outra pagina para logar
+      sessionDataType: {
+        results: 'Array'
+      }
     }
   }
 })

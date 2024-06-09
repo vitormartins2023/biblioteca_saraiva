@@ -12,13 +12,32 @@ const ItensMenu = ref([
         icon: 'pi pi-briefcase'
     },
 
+    {
+        label: 'Meus pedidos',
+        icon: 'pi pi-users'
+    },
+
+
+
 ])
 </script>
 <template>
     <header>
-        <div class ="flex align-items-center justify-content-center">
-            <Menubar :model="ItensMenu" />
+        <div class="flex align-items-center justify-content-center">
+        <div class="menu-item flex align-items-center justify-content-center mr-4">
+          <i class="pi pi-home mr-1"></i>
+          <NuxtLink to="/">Livros</NuxtLink>
         </div>
+        <div class="menu-item flex align-items-center justify-content-center mr-4">
+          <i class="pi pi-shopping-cart mr-1"></i>
+          <NuxtLink to="/carrinho">Carrinho</NuxtLink>
+        </div>
+        <div class="menu-item flex align-items-center justify-content-center mr-4">
+          <i class="pi pi-users-cart mr-1"></i>
+          <NuxtLink to="/login">Login</NuxtLink>
+        </div>
+
+    </div>
     </header>
 </template>
 <style scoped lang = "scss">

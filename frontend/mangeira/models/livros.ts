@@ -26,7 +26,6 @@ export type Autor={
 } 
 
 export type Livros={
-
     id:number;
     titulo: string;
     descricao: string;
@@ -38,7 +37,7 @@ export type Livros={
     categoria_FK: Categoria;
     dataPub: string;
     valor_livro: number;
-    capa: Array<string>;
+    capa: string;
     estrela: number;
     estoque: number;
 

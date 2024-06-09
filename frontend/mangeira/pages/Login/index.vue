@@ -16,7 +16,7 @@ definePageMeta({
         signIn(credenciais, {redirect:false})
             .then(()=>{ //qnd terminar esse login 
                 console.log("logadocom sucesso...");
-                navigateTo('/home');
+                navigateTo('/');
             })
             .catch((error)=> {
                 console.error("error: ", error)

@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .gerenciador import Gerenciador
 from django.utils import timezone
+import datetime
 
 
 class UsuarioCustomizado(AbstractBaseUser,PermissionsMixin):
@@ -67,7 +68,7 @@ class Livros(models.Model):
     categoria_FK = models.ForeignKey(Categoria, related_name='CategoriaLivro', on_delete=models.CASCADE)
     dataPub = models.DateField()
     valor_livro =  models.DecimalField(max_digits=5, decimal_places=2,null=True, blank= True)
-    capa = models.CharField(max_length=1000)
+    capa = models.TextField()
     estrela = models.IntegerField()
     estoque = models.IntegerField()
 
@@ -79,8 +80,13 @@ class Emprestimo(models.Model):
     customUserFK =  models.ForeignKey(UsuarioCustomizado, related_name='usuarioEmprestimo', on_delete=models.CASCADE)
     valor_total = models.DecimalField(max_digits=5, decimal_places=2)
     data_pegou = models.DateTimeField(auto_now_add=True)
-    data_prevista = models.DateField(null=True, blank= True)
-    data_entrega = models.DateField(null=True, blank= True)
+    data_prevista = models.DateTimeField(null=True, blank= True)
+    data_entrega = models.DateTimeField(null=True, blank= True)
 
     def __str__(self):
-         return self.CustomUserFK.email
+        return self.customUserFK.email
+
+    def save(self, *args, **kwargs):
+        diaDeHoje = datetime.datetime.now()
+        self.data_prevista = diaDeHoje + datetime.timedelta(days=14)
+        super().save(*args, **kwargs)

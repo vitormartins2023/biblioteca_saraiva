@@ -9,3 +9,9 @@ export type Emprestimos = {
     data_prevista: string;
     data_entrega: string;
 }
+
+export type Loanbody = {
+    customUserFK: number;
+    livro: Array<number>;
+    valor_total: number;
+}

@@ -36,8 +36,6 @@ class LivrosSerializer(serializers.ModelSerializer):
         many = True
 
 class EmprestimoSerializer(serializers.ModelSerializer):
-    customUserFK= UsuarioCustomizadoSerializer(read_only=True)
-    livro= LivrosSerializer(read_only= True)
     class Meta:
         model= Emprestimo
         fields = '__all__'
